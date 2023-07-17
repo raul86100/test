@@ -10,7 +10,7 @@ class sample{
 
         }
         else{
-            System.out.println("It is odd");
+            System.out.println("no in the master file");
         }
     }
 }
