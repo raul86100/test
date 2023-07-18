@@ -1,0 +1,349 @@
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo adduser --system --no-create-home --group --disabled-login sonarh2s
+[sudo] password for divum: 
+Adding system user `sonarh2s' (UID 127) ...
+Adding new group `sonarh2s' (GID 134) ...
+Adding new user `sonarh2s' (UID 127) with group `sonarh2s' ...
+Not creating home directory `/home/sonarh2s'.
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | sudo apt-key add -
+OK
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" | sudo tee /etc/apt/sources.list.d/postgresql.list
+deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo apt update
+Hit:1 http://in.archive.ubuntu.com/ubuntu focal InRelease                                                                       
+Hit:2 http://in.archive.ubuntu.com/ubuntu focal-updates InRelease                                                              
+Get:3 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:4 http://apt.postgresql.org/pub/repos/apt focal-pgdg InRelease [123 kB]   
+Get:5 http://in.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]              
+Get:6 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 Packages [273 kB]                
+Fetched 618 kB in 8s (78.8 kB/s)                                                                                                                                                                          
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+158 packages can be upgraded. Run 'apt list --upgradable' to see them.
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo apt install postgresql-13
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libcommon-sense-perl libjson-perl libjson-xs-perl libllvm10 libpq5 libtypes-serialiser-perl postgresql-client-13 postgresql-client-common postgresql-common sysstat
+Suggested packages:
+  postgresql-doc-13 isag
+The following NEW packages will be installed:
+  libcommon-sense-perl libjson-perl libjson-xs-perl libllvm10 libpq5 libtypes-serialiser-perl postgresql-13 postgresql-client-13 postgresql-client-common postgresql-common sysstat
+0 upgraded, 11 newly installed, 0 to remove and 158 not upgraded.
+Need to get 33.1 MB of archives.
+After this operation, 134 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://in.archive.ubuntu.com/ubuntu focal/main amd64 libjson-perl all 4.02000-2 [80.9 kB]
+Get:2 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 postgresql-client-common all 250.pgdg20.04+1 [93.3 kB]
+Get:3 http://in.archive.ubuntu.com/ubuntu focal/main amd64 libcommon-sense-perl amd64 3.74-2build6 [20.1 kB]
+Get:4 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 postgresql-common all 250.pgdg20.04+1 [239 kB]
+Get:5 http://in.archive.ubuntu.com/ubuntu focal/main amd64 libtypes-serialiser-perl all 1.0-1 [12.1 kB]
+Get:6 http://in.archive.ubuntu.com/ubuntu focal/main amd64 libjson-xs-perl amd64 4.020-1build1 [83.7 kB]
+Get:7 http://in.archive.ubuntu.com/ubuntu focal/main amd64 libllvm10 amd64 1:10.0.0-4ubuntu1 [15.3 MB]
+Get:8 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 libpq5 amd64 15.3-1.pgdg20.04+1 [184 kB]
+Get:9 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 postgresql-client-13 amd64 13.11-1.pgdg20.04+1 [1,506 kB]
+Get:10 http://apt.postgresql.org/pub/repos/apt focal-pgdg/main amd64 postgresql-13 amd64 13.11-1.pgdg20.04+1 [15.1 MB]                                                                                    
+Get:11 http://in.archive.ubuntu.com/ubuntu focal-updates/main amd64 sysstat amd64 12.2.0-2ubuntu0.3 [448 kB]                                                                                              
+Fetched 33.1 MB in 1min 6s (498 kB/s)                                                                                                                                                                     
+Preconfiguring packages ...
+Selecting previously unselected package libjson-perl.
+(Reading database ... 183580 files and directories currently installed.)
+Preparing to unpack .../00-libjson-perl_4.02000-2_all.deb ...
+Unpacking libjson-perl (4.02000-2) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../01-postgresql-client-common_250.pgdg20.04+1_all.deb ...
+Unpacking postgresql-client-common (250.pgdg20.04+1) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../02-postgresql-common_250.pgdg20.04+1_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (250.pgdg20.04+1) ...
+Selecting previously unselected package libcommon-sense-perl.
+Preparing to unpack .../03-libcommon-sense-perl_3.74-2build6_amd64.deb ...
+Unpacking libcommon-sense-perl (3.74-2build6) ...
+Selecting previously unselected package libtypes-serialiser-perl.
+Preparing to unpack .../04-libtypes-serialiser-perl_1.0-1_all.deb ...
+Unpacking libtypes-serialiser-perl (1.0-1) ...
+Selecting previously unselected package libjson-xs-perl.
+Preparing to unpack .../05-libjson-xs-perl_4.020-1build1_amd64.deb ...
+Unpacking libjson-xs-perl (4.020-1build1) ...
+Selecting previously unselected package libllvm10:amd64.
+Preparing to unpack .../06-libllvm10_1%3a10.0.0-4ubuntu1_amd64.deb ...
+Unpacking libllvm10:amd64 (1:10.0.0-4ubuntu1) ...
+Selecting previously unselected package libpq5:amd64.
+Preparing to unpack .../07-libpq5_15.3-1.pgdg20.04+1_amd64.deb ...
+Unpacking libpq5:amd64 (15.3-1.pgdg20.04+1) ...
+Selecting previously unselected package postgresql-client-13.
+Preparing to unpack .../08-postgresql-client-13_13.11-1.pgdg20.04+1_amd64.deb ...
+Unpacking postgresql-client-13 (13.11-1.pgdg20.04+1) ...
+Selecting previously unselected package postgresql-13.
+Preparing to unpack .../09-postgresql-13_13.11-1.pgdg20.04+1_amd64.deb ...
+Unpacking postgresql-13 (13.11-1.pgdg20.04+1) ...
+Selecting previously unselected package sysstat.
+Preparing to unpack .../10-sysstat_12.2.0-2ubuntu0.3_amd64.deb ...
+Unpacking sysstat (12.2.0-2ubuntu0.3) ...
+Setting up postgresql-client-common (250.pgdg20.04+1) ...
+Setting up libpq5:amd64 (15.3-1.pgdg20.04+1) ...
+Setting up libcommon-sense-perl (3.74-2build6) ...
+Setting up postgresql-client-13 (13.11-1.pgdg20.04+1) ...
+update-alternatives: using /usr/share/postgresql/13/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up libllvm10:amd64 (1:10.0.0-4ubuntu1) ...
+Setting up libtypes-serialiser-perl (1.0-1) ...
+Setting up libjson-perl (4.02000-2) ...
+Setting up sysstat (12.2.0-2ubuntu0.3) ...
+
+Creating config file /etc/default/sysstat with new version
+update-alternatives: using /usr/bin/sar.sysstat to provide /usr/bin/sar (sar) in auto mode
+Created symlink /etc/systemd/system/multi-user.target.wants/sysstat.service → /lib/systemd/system/sysstat.service.
+Setting up libjson-xs-perl (4.020-1build1) ...
+Setting up postgresql-common (250.pgdg20.04+1) ...
+Adding user postgres to group ssl-cert
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+  en_us
+Removing obsolete dictionary files:
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /lib/systemd/system/postgresql.service.
+Setting up postgresql-13 (13.11-1.pgdg20.04+1) ...
+Creating new PostgreSQL cluster 13/main ...
+/usr/lib/postgresql/13/bin/initdb -D /var/lib/postgresql/13/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_IN".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/13/main ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... posix
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default time zone ... Asia/Kolkata
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    pg_ctlcluster 13 main start
+
+Processing triggers for systemd (245.4-4ubuntu3.20) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.7) ...
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Tue 2023-07-18 10:52:58 IST; 35s ago
+   Main PID: 5803 (code=exited, status=0/SUCCESS)
+      Tasks: 0 (limit: 18950)
+     Memory: 0B
+     CGroup: /system.slice/postgresql.service
+
+Jul 18 10:52:58 divum-Latitude-7490 systemd[1]: Starting PostgreSQL RDBMS...
+Jul 18 10:52:58 divum-Latitude-7490 systemd[1]: Finished PostgreSQL RDBMS.
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo passwd postgres
+New password: 
+Retype new password: 
+passwd: password updated successfully
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ su - postgres
+Password: 
+su: Authentication failure
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ su - postgres
+Password: 
+postgres@divum-Latitude-7490:~$ createuser sonaruser
+postgres@divum-Latitude-7490:~$ psql
+psql (13.11 (Ubuntu 13.11-1.pgdg20.04+1))
+Type "help" for help.
+
+postgres=# ALTER USER sonaruser WITH ENCRYPTED password 'yourpassword'^Z
+[1]+  Stopped                 psql
+postgres@divum-Latitude-7490:~$ psql
+psql (13.11 (Ubuntu 13.11-1.pgdg20.04+1))
+Type "help" for help.
+
+postgres=# ALTER USER ragul WITH ENCRYPTED password 'admin';
+ERROR:  role "ragul" does not exist
+postgres=# ALTER USER sonaruser WITH ENCRYPTED password 'admin';
+ALTER ROLE
+postgres=# CREATE DATABASE sonardb OWNER sonaruser;
+CREATE DATABASE
+postgres=# \q
+postgres@divum-Latitude-7490:~$ exit
+logout
+There are stopped jobs.
+postgres@divum-Latitude-7490:~$ exit
+logout
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ cd ..
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ cd ..
+divum@divum-Latitude-7490:~/Documents/sonarqube$ cd ..
+divum@divum-Latitude-7490:~/Documents$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents$ sudo mv /sonarqube-* /opt/sonarqube
+mv: cannot stat '/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents$ sudo mv /sonarqube-* /sonarqube
+mv: cannot stat '/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents$ ^C
+divum@divum-Latitude-7490:~/Documents$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents$ cd sonarqube
+divum@divum-Latitude-7490:~/Documents/sonarqube$ ls
+bin  conf  COPYING  data  dependency-license.json  elasticsearch  extensions  lib  logs  sonarqube-10.1.0.73491  sonar-scanner-4.8.0.2856-linux  temp  web
+divum@divum-Latitude-7490:~/Documents/sonarqube$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube$ cd bin
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ ls
+elasticsearch  linux-x86-64  macosx-universal-64  windows-x86-64  winsw-license
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ cd linux-x86-64/
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ ls
+SonarQube.pid  sonar.sh
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin/linux-x86-64$ cd ..
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube/bin$ cd ..
+divum@divum-Latitude-7490:~/Documents/sonarqube$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents/sonarqube$ cd ..
+divum@divum-Latitude-7490:~/Documents$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~/Documents$ cd ..
+divum@divum-Latitude-7490:~$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:~$ cd ..
+divum@divum-Latitude-7490:/home$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:/home$ cd ..
+divum@divum-Latitude-7490:/$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:/$ cd ..
+divum@divum-Latitude-7490:/$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:/$ cd ..
+divum@divum-Latitude-7490:/$ sudo mv /opt/sonarqube-* /opt/sonarqube
+mv: cannot stat '/opt/sonarqube-*': No such file or directory
+divum@divum-Latitude-7490:/$ sudo apt install docker 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  wmdocker
+The following NEW packages will be installed:
+  docker wmdocker
+0 upgraded, 2 newly installed, 0 to remove and 158 not upgraded.
+Need to get 14.3 kB of archives.
+After this operation, 58.4 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://in.archive.ubuntu.com/ubuntu focal/universe amd64 wmdocker amd64 1.5-2 [13.0 kB]
+Get:2 http://in.archive.ubuntu.com/ubuntu focal/universe amd64 docker all 1.5-2 [1,316 B]
+Fetched 14.3 kB in 1s (14.9 kB/s)  
+Selecting previously unselected package wmdocker.
+(Reading database ... 185711 files and directories currently installed.)
+Preparing to unpack .../wmdocker_1.5-2_amd64.deb ...
+Unpacking wmdocker (1.5-2) ...
+Selecting previously unselected package docker.
+Preparing to unpack .../archives/docker_1.5-2_all.deb ...
+Unpacking docker (1.5-2) ...
+Setting up wmdocker (1.5-2) ...
+Setting up docker (1.5-2) ...
+Processing triggers for man-db (2.9.1-1) ...
+divum@divum-Latitude-7490:/$ sudo apt install docker.io
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  bridge-utils containerd pigz runc ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools btrfs-progs cgroupfs-mount | cgroup-lite debootstrap docker-doc rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd docker.io pigz runc ubuntu-fan
+0 upgraded, 6 newly installed, 0 to remove and 158 not upgraded.
+Need to get 65.7 MB of archives.
+After this operation, 292 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://in.archive.ubuntu.com/ubuntu focal/universe amd64 pigz amd64 2.4-1 [57.4 kB]
+Get:2 http://in.archive.ubuntu.com/ubuntu focal/main amd64 bridge-utils amd64 1.6-2ubuntu1 [30.5 kB]
+Get:3 http://in.archive.ubuntu.com/ubuntu focal-updates/main amd64 runc amd64 1.1.4-0ubuntu1~20.04.3 [3,819 kB]
+Get:4 http://in.archive.ubuntu.com/ubuntu focal-updates/main amd64 containerd amd64 1.6.12-0ubuntu1~20.04.3 [31.4 MB]
+Get:5 http://in.archive.ubuntu.com/ubuntu focal-updates/universe amd64 docker.io amd64 20.10.21-0ubuntu1~20.04.2 [30.3 MB]                                                                                
+Get:6 http://in.archive.ubuntu.com/ubuntu focal-updates/main amd64 ubuntu-fan all 0.12.13ubuntu0.1 [34.4 kB]                                                                                              
+Fetched 65.7 MB in 18s (3,683 kB/s)                                                                                                                                                                       
+Preconfiguring packages ...
+Selecting previously unselected package pigz.
+(Reading database ... 185721 files and directories currently installed.)
+Preparing to unpack .../0-pigz_2.4-1_amd64.deb ...
+Unpacking pigz (2.4-1) ...
+Selecting previously unselected package bridge-utils.
+Preparing to unpack .../1-bridge-utils_1.6-2ubuntu1_amd64.deb ...
+Unpacking bridge-utils (1.6-2ubuntu1) ...
+Selecting previously unselected package runc.
+Preparing to unpack .../2-runc_1.1.4-0ubuntu1~20.04.3_amd64.deb ...
+Unpacking runc (1.1.4-0ubuntu1~20.04.3) ...
+Selecting previously unselected package containerd.
+Preparing to unpack .../3-containerd_1.6.12-0ubuntu1~20.04.3_amd64.deb ...
+Unpacking containerd (1.6.12-0ubuntu1~20.04.3) ...
+Selecting previously unselected package docker.io.
+Preparing to unpack .../4-docker.io_20.10.21-0ubuntu1~20.04.2_amd64.deb ...
+Unpacking docker.io (20.10.21-0ubuntu1~20.04.2) ...
+Selecting previously unselected package ubuntu-fan.
+Preparing to unpack .../5-ubuntu-fan_0.12.13ubuntu0.1_all.deb ...
+Unpacking ubuntu-fan (0.12.13ubuntu0.1) ...
+Setting up runc (1.1.4-0ubuntu1~20.04.3) ...
+Setting up bridge-utils (1.6-2ubuntu1) ...
+Setting up pigz (2.4-1) ...
+Setting up containerd (1.6.12-0ubuntu1~20.04.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Setting up ubuntu-fan (0.12.13ubuntu0.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/ubuntu-fan.service → /lib/systemd/system/ubuntu-fan.service.
+Setting up docker.io (20.10.21-0ubuntu1~20.04.2) ...
+Adding group `docker' (GID 136) ...
+Done.
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+Processing triggers for systemd (245.4-4ubuntu3.20) ...
+Processing triggers for man-db (2.9.1-1) ...
+divum@divum-Latitude-7490:/$ sudo docker pull sonarqube:latest
+latest: Pulling from library/sonarqube
+9d19ee268e0d: Pull complete 
+f2b566cb887b: Pull complete 
+8fc8f3b3863b: Pull complete 
+beb2b830c8b6: Pull complete 
+394329c8ee57: Pull complete 
+12c43f2deaf3: Pull complete 
+Digest: sha256:b0e9f03c5c1b9faf2c4cc3bbd81ef90d9df8876e9b40271881a6168774374c6e
+Status: Downloaded newer image for sonarqube:latest
+docker.io/library/sonarqube:latest
+divum@divum-Latitude-7490:/$ sudo docker run -d -p 9000:9000 sonarqube:latest
+4f3136302625d1911dcebe92172d87b872aa8db0b4cc8269ee200cacc7bdaaa5
+divum@divum-Latitude-7490:/$ sudo docker run -d -p 9000:9000 sonarqube:latest
+ca8834286ca9d29165c781e42aa290432fb77bc5488b689e81234b6938960476
+docker: Error response from daemon: driver failed programming external connectivity on endpoint busy_sinoussi (025f4a978a410bcd730bd7a11459c90228767ce04432dc9d16938847263a6a21): Bind for 0.0.0.0:9000 failed: port is already allocated.
+divum@divum-Latitude-7490:/$ sudo docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+sonarqube    latest    907b1b7b82be   12 days ago   700MB
+divum@divum-Latitude-7490:/$ sudo docker ps
+CONTAINER ID   IMAGE              COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+4f3136302625   sonarqube:latest   "/opt/sonarqube/dock…"   2 minutes ago   Up 2 minutes   0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   adoring_jemison
+divum@divum-Latitude-7490:/$ ^C
+divum@divum-Latitude-7490:/$ ^C
+divum@divum-Latitude-7490:/$ cd sonarqube
+bash: cd: sonarqube: No such file or directory
+divum@divum-Latitude-7490:/$ sudo docker ps
+[sudo] password for divum: 
+CONTAINER ID   IMAGE              COMMAND                  CREATED       STATUS       PORTS                                       NAMES
+4f3136302625   sonarqube:latest   "/opt/sonarqube/dock…"   3 hours ago   Up 3 hours   0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   adoring_jemison
+divum@divum-Latitude-7490:/$ cd sonarqube:latest
+bash: cd: sonarqube:latest: No such file or directory
+divum@divum-Latitude-7490:/$ cd sonarqube:latest/
+bash: cd: sonarqube:latest/: No such file or directory
+divum@divum-Latitude-7490:/$ 
